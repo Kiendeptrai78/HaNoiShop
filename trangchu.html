@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HÀ NỘI SHOP</title>
+    <link rel="stylesheet" href="trangChu.css">   
+</head>
+<body>
+    <header>
+        <a href="trangchu.html" class="logo">HÀ NỘI SHOP<span>.</span></a>
+        <ul class="taomenu">
+            <li><a href="trangchu.html">TRANG CHỦ</a></li>
+            <li><a href="gioithieu.html">GIỚI THIỆU</a></li>
+            <li><a href="dacsan.html">SẢN PHẨM</a></li>
+            <li><a href="dulich.html">DỊCH VỤ</a></li>
+            <li><a href="lienhe.html">TÀI KHOẢN</a></li>
+            <li><box-icon name='moon'></box-icon></li>
+        </ul>
+    </header>
+    
+    <section class="banner" id="banner">
+        <div class="content">
+            <h2>MUA SẮM TẠI HÀ NỘI</h2>
+            <p>Chào mừng bạn đến với HÀ NỘI SHOP, nơi bạn có thể mua sắm các sản phẩm đặc sản, quà lưu niệm, và nhiều hơn nữa từ Hà Nội!</p>
+            <a href="dacsan.html" class="btn">Mua Nao</a>
+        </div>
+    </section>
+    <br>
+    <br>
+    <br>
+
+    <footer>
+        <p class="copyright w3l">TRƯỜNG ĐẠI HỌC CÔNG NGHỆ ĐÔNG Á</p>
+        <p class="copyright w3l">Địa chỉ: Toà Nhà Polyco, Trịnh Văn Bô, Nam Từ Liêm, Hà Nội</p>
+        <p class="copyright w3l">Điện Thoại: 02462627797</p>
+        <p class="copyright w3l">Email: tuyensinh@eaut.edu.vn</p>
+        <br>
+    </footer>
+    <script type="text/javascript">
+        window.addEventListener('scroll', function(){
+            const header = document.querySelector('header');
+            header.classList.toggle('sticky',window.scrollY > 0);
+        });
+    
+    </script>   
+</body>
+</html>

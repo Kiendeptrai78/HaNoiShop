@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REVIEW HÀ NỘI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="trangChu.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <header>
+      <a href="trangchu.html" class="logo">REVIEW<br>HÀ NỘI<span>.</span></a>
+      <ul class="taomenu">
+        <li><a href="trangchu.html">TRANG CHỦ</a></li>
+        <li><a href="gioithieu.html">GIỚI THIỆU</a></li>
+        <li><a href="#dacsan">ẨM THỰC</a></li>
+        <li><a href="dulich.html">DU LỊCH</a></li>
+        <li><a href="lienhe.html">TÀI KHOẢN</a></li>
+        <li>
+          <box-icon name="moon"></box-icon>
+        </li>
+      </ul>
+    </header>
+
+    <script type="text/javascript">
+      window.addEventListener("scroll", function () {
+        const header = document.querySelector("header");
+        header.classList.toggle("sticky", window.scrollY > 0);
+      });
+    </script>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <section class="dacsan" id="dacsan">
+      <div class="tieuDe">
+        <h2 class="tieuDeText"><span>ẨM THỰC HÀ NỘI</span></h2>
+        <br/>
+        <p>ĐẶC SẢN HÀ NỘI</p>
+        <p>
+          “Muốn hiểu văn hóa của một vùng, không cách nào nhanh hơn là thưởng
+          thức ẩm thực của vùng đó…”. <br />
+          Những món ăn đặc sản truyền thống của Hà Nội không chỉ làm nức lòng
+          những người con Hà Thành, mà còn khiến du khách thập phương không thể
+          nào quên dù chỉ thử một lần
+        </p>
+      </div>
+      <div class="content" id="content"></div>
+
+      <div class="tieuDe">
+        <a href="https://halotravel.vn/mon-an-ngon-ha-noi/" class="btn">Xem Thêm</a>
+      </div>
+    </section>
+
+    <button id="btn-remove">Xóa Giỏ Hàng</button>
+    <div id="cart">
+      <table>
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Tên Món Ăn</th>
+            <th>Ảnh</th>
+            <th>Giá</th>
+            <th>Tình Trạng</th>
+          </tr>
+        </thead>
+        <tbody id="table-data"></tbody>
+        <tfoot id="table-total"></tfoot>
+      </table>
+    </div>
+
+    <footer>
+      <p class="copyright w3l">TRƯỜNG ĐẠI HỌC CÔNG NGHỆ ĐÔNG Á</p>
+      <p class="copyright w3l">
+        Địa chỉ: Toà Nhà Polyco, Trịnh Văn Bô, Nam Từ Liêm, Hà Nội
+      </p>
+      <p class="copyright w3l">Điện Thoại: 02462627797</p>
+      <p class="copyright w3l">Email: tuyensinh@eaut.edu.vn</p>
+      <br/>
+    </footer>
+    <script src="dacSan.js"></script>
+  </body>
+</html>

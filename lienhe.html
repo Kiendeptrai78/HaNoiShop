@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REVIEW HÀ NỘI</title>
+    <link rel="stylesheet" href="trangChu.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <header>
+      <a href="trangchu.html" class="logo">REVIEW<br />HÀ NỘI<span>.</span></a>
+      <ul class="taomenu">
+        <li><a href="trangchu.html">TRANG CHỦ</a></li>
+        <li><a href="gioithieu.html">GIỚI THIỆU</a></li>
+        <li><a href="dacsan.html">ẨM THỰC</a></li>
+        <li><a href="dulich.html">DU LỊCH</a></li>
+        <li><a href="#lienhe">TÀI KHOẢN</a></li>
+        <li><box-icon name="moon"></box-icon></li>
+      </ul>
+    </header>
+    <script type="text/javascript">
+      window.addEventListener("scroll", function () {
+        const header = document.querySelector("header");
+        header.classList.toggle("sticky", window.scrollY > 0);
+      });
+    </script>
+    <br />
+    <br />
+    <br />
+
+    <section class="lienhe" id="lienhe">
+      <h1 class="hello">Đăng Kí</h1>
+      <div class="hello-title">
+        <div class="content-agile1">
+          <h2 class="agileits1"></h2>
+          <p class="agileits2"></p>
+        </div>
+        <div class="content-agile2">
+          <form>
+            <div class="form-control w3layouts">
+              <input type="text" id="firstname" placeholder="Tên Đăng Nhập">
+            </div>
+
+            <div class="form-control w3layouts">
+              <input type="email" id="email" placeholder="@gmail.com">
+            </div>
+
+            <div class="form-control agileinfo">
+              <input
+                type="password"
+                class="lock"
+                placeholder="Mật Khẩu"
+                id="password1"
+              />
+            </div>
+
+            <div class="form-control agileinfo">
+              <input
+                type="password"
+                class="lock"
+                placeholder="Nhập Lại Mật Khẩu"
+                id="password2"
+              />
+            </div>
+
+            <input type="submit" class="register" value="Tạo" id="Sign-in">
+            <a href="./dangnhap.html" class="dangki" style="text-decoration: none; padding-top: 15px">Đăng Nhập</a>
+          </form>
+
+          <p class="icon">Đăng Nhập Bằng Tài Khoản Khác</p>
+          <ul class="danhsachicon">
+            <li>
+              <a href="#"><i class="fa fa-facebook"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-google-plus"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-instagram"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-youtube"></i></a>
+            </li>
+          </ul>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </section>
+    <footer>
+      <p class="copyright w3l">TRƯỜNG ĐẠI HỌC CÔNG NGHỆ ĐÔNG Á</p>
+      <p class="copyright w3l">
+        Địa chỉ: Toà Nhà Polyco, Trịnh Văn Bô, Nam Từ Liêm, Hà Nội
+      </p>
+      <p class="copyright w3l">Điện Thoại: 02462627797</p>
+      <p class="copyright w3l">Email: tuyensinh@eaut.edu.vn</p>
+    </footer>
+    <script src="dangki.js"></script>
+  </body>
+</html>
