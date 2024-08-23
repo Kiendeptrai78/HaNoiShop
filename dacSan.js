@@ -1,3 +1,4 @@
+// Danh sách sản phẩm
 var products = [
   {
     id: "1",
@@ -149,90 +150,142 @@ var products = [
     status: true,
   },
 ];
+// Danh sách đơn hàng đã thanh toán
+var orderHistory = [];
+
+// Danh sách đơn hàng tạm thời
+var currentOrder = [];
+
+// Hiển thị sản phẩm
 function showProduct() {
   var productDiv = document.getElementById("content");
+  productDiv.innerHTML = ""; // Xóa nội dung cũ trước khi thêm nội dung mới
   for (var i = 0; i < products.length; i++) {
     productDiv.innerHTML += `
-        <div class="box">
-          <div class="imgBx">
-              <img src="${products[i].img}" alt="">
-          </div>
-        <div class="text">
-              <h3>${products[i].name}</h3>
-              <span>${products[i].price} VND</span>
-  
+      <div class="box">
+        <div class="imgBx">
+          <img src="${products[i].img}" alt="">
         </div>
-          <button class="buy" onclick="addToCart(${products[i].id})">Đặt hàng</button>
+        <div class="text">
+          <h3>${products[i].name}</h3>
+          <span>${products[i].price} VND</span>
+        </div>
+        <button class="buy" onclick="addToCart('${products[i].id}')">Đặt hàng</button>
       </div>
-        `;
+    `;
   }
 }
 
 showProduct();
 
 var cartData = [];
-function addToCart(id) {
-  for (var i = 0; i < products.length; i++) {
-    if (products[i].id == id) {
-      var newProduct = {
-        id: products[i].id,
-        name: products[i].name,
-        img: products[i].img,
-        price: products[i].price,
-        status: products[i].status,
-      };
-    }
-  }
 
-  console.log(cartData);
-  cartData.push(newProduct);
-  console.log(cartData);
-  alert("Bạn đã thêm vào giỏ hàng thành công!");
-  showCart();
+// Thêm sản phẩm vào giỏ hàng
+function addToCart(id) {
+  var newProduct = products.find(product => product.id === id);
+  if (newProduct) {
+    cartData.push(newProduct);
+    alert("Bạn đã thêm vào giỏ hàng thành công!");
+    showCart(); // Hiển thị lại giỏ hàng
+  }
 }
 
+// Hiển thị giỏ hàng
 function showCart() {
   var tableData = document.getElementById("table-data");
-  tableData.innerHTML = "";
+  tableData.innerHTML = ""; // Xóa nội dung cũ
   var total = 0;
   for (var i = 0; i < cartData.length; i++) {
     tableData.innerHTML += `
-              <tr>
-                  <td><p>${i + 1}</p></td>
-                  <td><p>${cartData[i].name}</p></td>
-                  <td><img src="${cartData[i].img}"></td>
-                  <td><p>${cartData[i].price} VND</p></td>
-                  <td><p>${
-                    cartData[i].status ? "Còn Hàng" : "Hết Hàng"
-                  }</p></td>
-              </tr>
-          `;
-    total += cartData[i].price;
+      <tr>
+        <td><p>${i + 1}</p></td>
+        <td><p>${cartData[i].name}</p></td>
+        <td><img src="${cartData[i].img}" alt="Ảnh"></td>
+        <td><p>${cartData[i].price} VND</p></td>
+        <td><p>${cartData[i].status ? "Còn Hàng" : "Hết Hàng"}</p></td>
+      </tr>
+    `;
+    total += cartData[i].price; // Tính tổng giá
   }
   document.getElementById("table-total").innerHTML = `
-          <tr>
-              <td colspan="3"><b>Tổng Tiền</b></td>
-              <td colspan="2"><p>${total} VND</p></td>
-          </tr>
-      `;
+    <tr>
+      <td colspan="3"><b>Tổng Tiền</b></td>
+      <td colspan="2"><p>${total} VND</p></td>
+    </tr>
+  `;
 }
 
-var cartDiv = document.getElementById("cart");
-// tìm phần tử
-var btnShowCart = document.getElementById("btn-show-cart");
-btnShowCart.onclick = function () {
-  if (cartData == "") {
-    alert("Giỏ hàng trống");
-  } else {
-    cartDiv.classList.toggle("show");
-    productDiv.classList.toggle("hide");
-  }
-};
-
-var btnRemove = document.getElementById("btn-remove");
-btnRemove.onclick = function () {
-  cartData.splice(0, cartData.length);
+// Xóa giỏ hàng
+document.getElementById("btn-remove").addEventListener("click", function() {
+  cartData = [];
   showCart();
-  cartDiv.classList.toggle("show");
-  productDiv.classList.toggle("hide");
-};
+  alert("Giỏ hàng đã được xóa!");
+});
+
+// Xử lý thanh toán
+document.getElementById('btn-checkout').addEventListener('click', function() {
+  if (cartData.length === 0) {
+    alert("Giỏ hàng trống, không thể thanh toán.");
+  } else {
+    var totalAmount = cartData.reduce((total, product) => total + product.price, 0);
+    alert("Thanh toán thành công! Tổng số tiền: " + totalAmount + " VND");
+
+    // Lưu đơn hàng vào lịch sử
+    orderHistory.push({
+      id: 'ORD-' + Date.now(), // Tạo ID đơn hàng dựa trên thời gian
+      items: cartData.map(item => ({ name: item.name, price: item.price })),
+      total: totalAmount,
+      date: new Date().toLocaleDateString()
+    });
+
+    // Xóa giỏ hàng sau khi thanh toán
+    cartData = [];
+    showCart();
+
+    // Hiển thị lịch sử đơn hàng
+    showOrderHistory();
+  }  
+});
+
+// Hiển thị lịch sử đơn hàng
+function showOrderHistory() {
+  var overlay = document.createElement('div');
+  overlay.className = 'dialog-overlay';
+
+  var content = document.createElement('div');
+  content.className = 'dialog-content';
+
+  var historyContent = '<h2>Lịch Sử Đơn Hàng</h2>';
+  historyContent += '<table>';
+  historyContent += '<thead><tr><th>ID Đơn Hàng</th><th>Ngày</th><th>Tổng</th><th>Chi Tiết</th></tr></thead><tbody>';
+
+  orderHistory.forEach(order => {
+    historyContent += `<tr>
+      <td>${order.id}</td>
+      <td>${order.date}</td>
+      <td>${order.total} VND</td>
+      <td>
+        <ul>
+          ${order.items.map(item => `<li>${item.name}: ${item.price} VND</li>`).join('')}
+        </ul>
+      </td>
+    </tr>`;
+  });
+
+  historyContent += '</tbody></table>';
+  historyContent += '<button id="btn-close-history">Đóng</button>';
+  
+  content.innerHTML = historyContent;
+  overlay.appendChild(content);
+  document.body.appendChild(overlay);
+
+  // Đóng cửa sổ lịch sử đơn hàng
+  document.getElementById('btn-close-history').addEventListener('click', function() {
+    document.body.removeChild(overlay);
+  });
+}
+
+// Thêm nút xem lịch sử đơn hàng
+document.getElementById('btn-show-history').addEventListener('click', function() {
+  showOrderHistory();
+});
